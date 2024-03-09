@@ -1,0 +1,170 @@
+*{
+    box-sizing: border-box;
+    
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+
+.classContainer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:20px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.day{
+    text-align: center;
+    color:lightcoral;
+    padding:10px;
+    border-radius: 500px;
+    border:5px solid pink;
+    font-size:20px;
+}
+
+.open-todo{
+    padding:4px;
+    background-color: pink;
+    border-radius: 10px;
+    border-color:white;
+    color:crimson;
+    font-weight: bold;
+    margin-left:5px;
+}
+
+.open-todo:hover{
+    background-color: whitesmoke;
+    color:crimson;
+}
+
+.konumlama{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap:20px;
+}
+
+li{
+    font-weight: bold;
+}
+
+h1{
+    text-align: center;
+    color:lightcoral;
+    font-weight: bolder;
+}
+
+.addTodo:hover{
+    background-color: lightcoral;
+    color:lightyellow;
+}
+
+.vazgec:hover{
+    background-color: lightcoral;
+    color:lightyellow;
+}
+
+.todo-input:hover{
+    border-color: lightcoral;
+}
+
+#day-color:hover{
+    border-color: lightcoral;
+    
+}
+
+.day h3{
+    font-size:30px;
+    
+}
+
+dialog form{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    
+}
+.todo-input{
+    background-color:lightgoldenrodyellow;
+    border-color: lightyellow;
+    border-style: solid;
+    
+}
+.todo-input::placeholder{
+    background-color: lightgoldenrodyellow;
+    font-weight: bold;
+    color:lightcoral;
+    
+    
+
+}
+#day-color{
+    font-weight: bold;
+    background-color: lightgoldenrodyellow;
+    border-color: lightyellow;
+}
+#day-color option{
+    font-weight: bold;
+    
+}
+
+
+dialog :is(button,input,select){
+    border-radius: 7px;
+    border-color:lightgoldenrodyellow;
+    border-style: solid;
+    padding:7px;
+    border-style: solid;
+    color:lightcoral;
+}
+dialog{
+    border-radius: 30px;
+    border-color:lightgoldenrodyellow;
+    padding:20px;
+    color:lightcoral;
+    background-color: bisque;
+    box-shadow: 0 5px 30px 0  rgb(0 0 0 / 0.1);
+    
+}
+dialog button{
+    background-color: lightyellow;
+    color:lightcoral;
+    font-weight: bold;
+    
+}
+dialog::backdrop {
+    background-color: rgba(0,0,0,.5);
+    backdrop-filter: blur(10px);
+}
+
+
+.day:hover{
+    text-shadow: 0px 0px 1px black, 
+            1px 1px 2px red, 
+            0 0 20px pink, 
+            0 0 5px white;
+            color:lightcoral;
+}
+h1:hover{
+    text-shadow: 0px 0px 1px black, 
+            1px 1px 2px DarkRed, 
+            0 0 20px FireBrick, 
+            0 0 5px Crimson;
+            color:lightcoral;
+         
+}
+
+
+.todoContainer-style{
+    list-style-type: none;
+    
+    
+}
+.checked {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
