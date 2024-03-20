@@ -1,123 +1,141 @@
 /**
- * 
- * @param {*} x 
+ *
+ * @param {*} x
  * @returns {HTMLElement} HTMLElement
  */
 
-
-function qs (x){
-    return document.querySelector(x);
+function qs(x) {
+  return document.querySelector(x);
 }
 
-const todoForm = document.querySelector('.todoForm');
-const todoİnput = document.querySelector('.todo-input');
-const addBtn = document.querySelector('.addTodo');
-const todoList = document.querySelector('.todo-List')
-const completedList = document.querySelector('.completed-List');
+const todoForm = qs('.todoForm');
+const todoInput = qs('.todo-input');
+const addBtn = qs('.addTodo');
+const todoList = qs('.todo-List');
+const completedList = qs('.completed-List');
 
-//dialog kismi
+// Dialog kısmı
 const dialogKismi = document.querySelector('dialog');
-const openDialog = document.querySelector('.open-todo');
-const closeDialog = document.querySelector('.vazgec');
+const openDialog = qs('.open-todo');
+const closeDialog = qs('.vazgec');
 
-//günler
-const monday = document.querySelector('#mon');
-const tuesday = document.querySelector('#tues');
-const wednesday = document.querySelector('#wednes');
-const thursday = document.querySelector('#thurs');
-const friday = document.querySelector('#fri');
-const saturday = document.querySelector('#satur');
+// Günler
+const monday = qs('#mon');
+const tuesday = qs('#tues');
+const wednesday = qs('#wednes');
+const thursday = qs('#thurs');
+const friday = qs('#fri');
+const saturday = qs('#satur');
 
+const days = [monday, tuesday, wednesday, thursday, friday, saturday];
 
+// Local Storage'dan veri yükleme
+function loadFromLocalStorage() {
+  todos = JSON.parse(localStorage.getItem('todos')) || [];
+}
 
+// Local Storage'a veri kaydetme
+function saveToLocalStorage() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
 
-const days = [
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday
-]
+// Local Storage'ı güncelleme
+function updateLocalStorage() {
+  saveToLocalStorage(); // Local Storage'a veriyi kaydet
+}
 
-let todos =[
-    {
-        task:'Evi Topla',
-        day: 0
-    }
-]
+// Silme işlevini ekleme
+function delTodo() {
+  const todoId = this.parentElement.id; // Silinecek todo öğesinin ID'sini al
+  const todoIndex = todos.findIndex((todo) => todo.id === Number(todoId));
+  this.parentElement.remove();
+  todos.splice(todoIndex, 1);
 
+  // Local Storage'ı güncelle
+  saveToLocalStorage();
+}
 
-
-openDialog.addEventListener('click',() =>{
-    dialogKismi.showModal();
-})
+openDialog.addEventListener('click', () => {
+  dialogKismi.showModal();
+});
 closeDialog.addEventListener('click', () => {
-    dialogKismi.close();
-})
+  dialogKismi.close();
+});
 
+todoForm.addEventListener('submit', (e) => {
+  e.preventDefault(); // Formun sayfanın yeniden yüklenmesini önle
 
-todoForm.addEventListener('submit', () =>{
+  const todoDataForm = new FormData(todoForm);
+  const todoObj = Object.fromEntries(todoDataForm.entries());
 
-    const todoDataForm = new FormData(todoForm);
-    const todoObj = Object.fromEntries(todoDataForm.entries());
+  // Her bir todo öğesi için benzersiz bir ID oluştur
+  const todoId = Date.now();
 
-    todos.push(todoObj);
-    appendTodo(todoObj);
+  todoObj.id = todoId; // Todo öğesine ID'yi ekleyin
 
-    todoForm.reset();
+  todos.push(todoObj);
+  appendTodo(todoObj);
 
-})
+  todoForm.reset(); // Formu sıfırla
 
-function todoYap(todo){
-    
-    let todoContainer = document.createElement('li');
-    todoContainer.innerText =  todo.task;
+  // Local Storage'ı güncelle
+  saveToLocalStorage();
+});
 
-    let delBtn = document.createElement('button');
-    let doneBtn = document.createElement('button');
+function todoYap(todo) {
+  const todoContainer = document.createElement('li');
+  todoContainer.innerText = todo.task;
+  todoContainer.id = todo.id;
 
-    delBtn.innerText = 'delete';
-    doneBtn.innerText = 'done';
+  const delBtn = document.createElement('button');
+  const doneBtn = document.createElement('button');
 
-    delBtn.classList.add('open-todo');
-    doneBtn.classList.add('open-todo');
+  delBtn.innerText = 'delete';
+  doneBtn.innerText = 'done';
 
-    delBtn.classList.add('btnKonum');
-    doneBtn.classList.add('btnKonum');
-    
+  delBtn.classList.add('open-todo');
+  doneBtn.classList.add('open-todo');
+  doneBtn.classList.add('doneBtn');
 
-    todoContainer.classList.add('todoContainer-style');
+  delBtn.classList.add('btnKonum');
+  doneBtn.classList.add('btnKonum');
 
+  todoContainer.classList.add('todoContainer-style');
 
-    todoContainer.appendChild(doneBtn);
-    todoContainer.appendChild(delBtn);
+  todoContainer.appendChild(doneBtn);
+  todoContainer.appendChild(delBtn);
 
-    doneBtn.addEventListener('click',done);
-    delBtn.addEventListener('click',delTodo);
+  doneBtn.addEventListener('click', done);
+  delBtn.addEventListener('click', delTodo);
+  // Eğer todo tamamlanmışsa, checked class'ını ekle
 
-    return todoContainer;
+  if (todo.completed) {
+    todoContainer.classList.add('checked');
+  }
 
+  return todoContainer;
 }
 
-function appendTodo(todo){
-
-    days[todo.day].appendChild(todoYap(todo));
+function appendTodo(todo) {
+  days[todo.day].appendChild(todoYap(todo));
 }
 
-
-function delTodo(){
-    this.parentElement.remove();
-}
 function done() {
-    this.parentElement.classList.toggle('checked');
-    
+  this.parentElement.classList.toggle('checked');
+
+  const todoId = this.parentElement.id;
+  const todoIndex = todos.findIndex((todo) => todo.id == Number(todoId));
+
+  todos[todoIndex].completed = !todos[todoIndex].completed;
+  updateLocalStorage();
 }
 
-function init(){
-    for (const todo of todos) {
-        appendTodo(todo);
-    }
+function init() {
+  for (const todo of todos) {
+    appendTodo(todo);
+  }
 }
 
+// Local Storage'dan veriyi yükle ve uygula
+loadFromLocalStorage();
 init();

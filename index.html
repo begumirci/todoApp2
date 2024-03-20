@@ -1,60 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/css.css">
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fauna+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/css.css" />
     <script src="assets/js/main.js" defer></script>
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <div class="konumlama">
-    <h1>TO DO LİST</h1>
-    <button class="open-todo">for Add</button>
-    </div>
-    <dialog>
+  <body>
+    <div class="container">
+      <div class="konumlama">
+        <h1>TO DO LİST</h1>
+        <button class="open-todo">for Add</button>
+      </div>
+      <dialog>
         <form method="dialog" class="todoForm">
+          <input
+            class="todo-input"
+            type="text"
+            name="task"
+            placeholder="Things to do..."
+          />
+          <select name="day" id="day-color">
+            <option value="">Choose day</option>
+            <option value="0">Monday</option>
+            <option value="1">Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+          </select>
 
-            <input  class="todo-input" type="text" name="task" placeholder="Things to do...">
-            <select name="day" id="day-color">
-                <option value="">Choose day</option>
-                <option value="0">Monday</option> 
-                <option value="1">Tuesday</option>
-                <option value="2">Wednesday</option>
-                <option value="3">Thursday</option>
-                <option value="4">Friday</option>
-                <option value="5">Saturday</option>
-            </select>
-            
-            <button class="addTodo">Add To Do</button>
-            <button type="reset" class="vazgec">Cancel</button>
-            
-
+          <button class="addTodo">Add To Do</button>
+          <button type="reset" class="vazgec">Cancel</button>
         </form>
-    </dialog>
-    <div class="classContainer">
-        <div class="day" id="mon">
-            <h3>Monday</h3>
+      </dialog>
+      <div class="classContainer">
+        <div class="tek">
+          <h3>Monday</h3>
+          <ul class="day" id="mon"></ul>
         </div>
-        <div class="day" id="tues">
-            <h3>Tuesday</h3>
+        <div>
+          <h3>Tuesday</h3>
+          <ul class="day" id="tues"></ul>
         </div>
-        <div class="day" id="wednes">
-            <h3>Wednesday</h3>
+        <div class="tek">
+          <h3>Wednesday</h3>
+          <ul class="day" id="wednes"></ul>
         </div>
-        <div class="day" id="thurs">
-            <h3>Thursday</h3>
+        <div>
+          <h3>Thursday</h3>
+          <ul class="day" id="thurs"></ul>
         </div>
-        <div class="day" id="fri">
-            <h3>Friday</h3>
+        <div class="tek">
+          <h3>Friday</h3>
+          <ul class="day" id="fri"></ul>
         </div>
-        <div class="day" id="satur">
-            <h3>Saturday</h3>
+        <div>
+          <h3>Saturday</h3>
+          <ul class="day" id="satur"></ul>
         </div>
-    </div>
-    <!-- 
+      </div>
+      <!-- 
 
     <div class="things-do">
         <h4>Things to do</h4>
@@ -65,6 +79,6 @@
         <ul class="completed-List"></ul>
     </div>
 -->
-</body>
-
+    </div>
+  </body>
 </html>

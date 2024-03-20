@@ -1,170 +1,213 @@
-*{
-    box-sizing: border-box;
-    
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    background-color: whitesmoke;
+body {
+  background-color: whitesmoke;
+
+  font-family: 'Fauna One', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.container {
+  padding-inline: 25px;
+  padding-block: 20px;
+  margin: auto;
+}
+.classContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+
+  & div {
+    padding-block: 12px;
+    padding-inline: 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    & h3 {
+      text-align: center;
+      padding-bottom: 7px;
+      padding-top: 2px;
+      color: #4338ca;
+      font-weight: bold;
+    }
+  }
 }
 
+.day {
+  font-size: 20px;
+  max-height: 150px; /* İçeriğin maksimum yüksekliği */
+  overflow-y: auto;
 
-.classContainer{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap:20px;
-    padding-right: 20px;
-    padding-left: 20px;
+  /* &:not(:first-child) {
+    overflow-y: scroll;
+    overflow: auto;
+    max-height: 200px;
+  } */
 }
 
-.day{
-    text-align: center;
-    color:lightcoral;
-    padding:10px;
-    border-radius: 500px;
-    border:5px solid pink;
-    font-size:20px;
+.tek {
+  background-color: #eef2ff;
 }
 
-.open-todo{
-    padding:4px;
-    background-color: pink;
-    border-radius: 10px;
-    border-color:white;
-    color:crimson;
+.open-todo {
+  padding-inline: 15px;
+  padding-block: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  font-weight: bold;
+  margin-left: 8px;
+  transition: background-color 0.5s ease-in;
+  &:hover {
+    background-color: #4338ca;
+    color: #e0e7ff;
+  }
+}
+.doneBtn {
+  margin-left: 20px;
+}
+.konumlama {
+  margin-block: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  & button {
+    padding-block: 7px;
+    padding-inline: 16px;
+    cursor: pointer;
+    background-color: #e0e7ff;
+    color: #4338ca;
+  }
+}
+
+li {
+  font-weight: bold;
+  padding-top: 8px;
+  color: #a5b4fc;
+}
+
+h1 {
+  text-align: center;
+  color: #4338ca;
+  font-weight: bolder;
+}
+
+.day h3 {
+  font-size: 30px;
+  color: #4338ca;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 10px;
+  padding-block: 8px;
+  gap: 20px;
+}
+.todo-input {
+  background-color: #c7d2fe;
+  border-style: solid;
+}
+
+#day-color option {
+  font-weight: bold;
+}
+
+dialog :is(button, input, select) {
+  padding-inline: 14px;
+  padding-block: 10px;
+  border-radius: 7px;
+  border-color: #c7d2fe;
+  border-style: solid;
+  color: #4338ca;
+  border-style: solid;
+  font-weight: bold;
+  &::placeholder {
+    color: #4338ca;
     font-weight: bold;
-    margin-left:5px;
+  }
 }
+dialog {
+  margin: auto;
+  border-radius: 30px;
+  border-color: #eef2ff;
+  padding: 30px;
+  background-color: #eef2ff;
+  box-shadow: 0 5px 30px 0 rgb(0 0 0 / 0.1);
+}
+dialog button {
+  background-color: #4338ca;
+  color: #e0e7ff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.5s ease-in;
+  border: none;
 
-.open-todo:hover{
-    background-color: whitesmoke;
-    color:crimson;
-}
-
-.konumlama{
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    gap:20px;
-}
-
-li{
-    font-weight: bold;
-}
-
-h1{
-    text-align: center;
-    color:lightcoral;
-    font-weight: bolder;
-}
-
-.addTodo:hover{
-    background-color: lightcoral;
-    color:lightyellow;
-}
-
-.vazgec:hover{
-    background-color: lightcoral;
-    color:lightyellow;
-}
-
-.todo-input:hover{
-    border-color: lightcoral;
-}
-
-#day-color:hover{
-    border-color: lightcoral;
-    
-}
-
-.day h3{
-    font-size:30px;
-    
-}
-
-dialog form{
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-    
-}
-.todo-input{
-    background-color:lightgoldenrodyellow;
-    border-color: lightyellow;
-    border-style: solid;
-    
-}
-.todo-input::placeholder{
-    background-color: lightgoldenrodyellow;
-    font-weight: bold;
-    color:lightcoral;
-    
-    
-
-}
-#day-color{
-    font-weight: bold;
-    background-color: lightgoldenrodyellow;
-    border-color: lightyellow;
-}
-#day-color option{
-    font-weight: bold;
-    
-}
-
-
-dialog :is(button,input,select){
-    border-radius: 7px;
-    border-color:lightgoldenrodyellow;
-    border-style: solid;
-    padding:7px;
-    border-style: solid;
-    color:lightcoral;
-}
-dialog{
-    border-radius: 30px;
-    border-color:lightgoldenrodyellow;
-    padding:20px;
-    color:lightcoral;
-    background-color: bisque;
-    box-shadow: 0 5px 30px 0  rgb(0 0 0 / 0.1);
-    
-}
-dialog button{
-    background-color: lightyellow;
-    color:lightcoral;
-    font-weight: bold;
-    
+  &:hover {
+    border: none;
+    background-color: #e0e7ff;
+    color: #4338ca;
+  }
 }
 dialog::backdrop {
-    background-color: rgba(0,0,0,.5);
-    backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
 }
 
-
-.day:hover{
-    text-shadow: 0px 0px 1px black, 
-            1px 1px 2px red, 
-            0 0 20px pink, 
-            0 0 5px white;
-            color:lightcoral;
-}
-h1:hover{
-    text-shadow: 0px 0px 1px black, 
-            1px 1px 2px DarkRed, 
-            0 0 20px FireBrick, 
-            0 0 5px Crimson;
-            color:lightcoral;
-         
-}
-
-
-.todoContainer-style{
-    list-style-type: none;
-    
-    
+.todoContainer-style {
+  list-style-type: none;
 }
 .checked {
-    text-decoration: line-through;
-    opacity: 0.5;
+  text-decoration: line-through;
+  color: #4338ca;
+  opacity: 0.5;
 }
+@media screen and (max-width: 600px) {
+  .doneBtn {
+    margin-left: 7px;
+  }
+  .konumlama {
+    margin-block: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .classContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  /* Todo formunu sığacak şekilde ayarla */
+  .todoForm {
+    width: 80%;
+    margin: auto;
+  }
+
+  /* Günler listesini yatay düzende göster */
+  .days-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  /* Tamamlanan ve tamamlanmamış öğeleri yan yana göster */
+  .todo-List,
+  .completed-List {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
